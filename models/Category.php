@@ -1,18 +1,20 @@
 <?php
 
+
 namespace App\models;
-class User extends Model
+
+
+class Category extends Model
 {
     protected function getTableName(): string
     {
-        return 'users';
+        return 'categories';
     }
 
     protected function getTableColumns(): array
     {
         return [
-            'login' => 'login',
-            'password' => 'password'
+            'name' => 'name'
         ];
     }
 }

@@ -1,10 +1,19 @@
 <?php
-    namespace App\models;
-    class Good extends Model {
-        protected function getTableName() :string {
-            return 'goods';
-        }
-        protected function getTableColumns() :string {
-            return 'name, description, photo_id, price';
-        }
+
+namespace App\models;
+class Good extends Model
+{
+    protected function getTableName(): string
+    {
+        return 'goods';
     }
+
+    protected function getTableColumns(): array
+    {
+        return [
+            'name' => 'name',
+            'price' => 'price',
+            'category_id' => 'category_id'
+        ];
+    }
+}

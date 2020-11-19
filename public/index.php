@@ -1,17 +1,25 @@
 <?php
-    include dirname(__DIR__) . '/services/Autoload.php';
-    spl_autoload_register([(new App\services\Autoload), 'loadClass']);
-    $db = new App\services\DB();
-    $user = new App\models\User($db);
-    echo $user->getOne(4) . '<br>';
+include dirname(__DIR__) . '/services/Autoload.php';
+spl_autoload_register([(new App\services\Autoload), 'loadClass']);
+$db = new App\services\DB();
+$user = new App\models\User();
 
-    $good = new App\models\Good($db);
-    echo $good->getAll() . '<br>';
+$controller = 'user';
+if (!empty($_GET['c'])) {
+    $controller = trim($_GET['c']);
+}
 
-    $sale = new App\models\Sale($db);
-    echo $sale->getAll() . '<br>';
-    echo $sale->execute([
-        'product_id' => '1',
-        'discount' => '20'
-    ]);
+$action = '';
+if (!empty($_GET['a'])) {
+    $action = trim($_GET['a']);
+}
 
+$controllerName = 'App\\controllers\\' . ucfirst($controller) . 'Controller';
+if (!class_exists($controllerName)) {
+    echo '404_c';
+    return;
+}
+
+/** @var App\models\User */
+$controllerObject = new $controllerName();
+echo $controllerObject->run($action);

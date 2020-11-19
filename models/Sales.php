@@ -1,18 +1,19 @@
 <?php
 
 namespace App\models;
-class User extends Model
+class Sales extends Model
 {
     protected function getTableName(): string
     {
-        return 'users';
+        return 'sales';
     }
 
     protected function getTableColumns(): array
     {
         return [
-            'login' => 'login',
-            'password' => 'password'
+            'sale_for' => 'sale_for',
+            'sale_for_id' => 'sale_for_id',
+            'discount' => 'discount'
         ];
     }
 }
